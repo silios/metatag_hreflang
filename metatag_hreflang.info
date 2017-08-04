@@ -1,0 +1,12 @@
+; $Id: metatag_hreflang.info,v 1.0 2015/03/16 12:00:00 silios Exp $
+name = Metatag: Hreflang
+description = "Provides support for custom HREFLANG SEO tags pointing in other sites - domains (CUSTOM IMPLEMENTATION FOR CLIENT). SILIOS"
+package = SEO
+core = 7.x
+version = 7.x-1.1
+
+dependencies[] = metatag
+
+files[] = metatag_hreflang.inc
+
+

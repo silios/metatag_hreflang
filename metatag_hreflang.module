@@ -1,0 +1,68 @@
+<?php
+// $Id: metatag_hreflang.module,v 1.0 2015/03/16 12:00:00 silios Exp $
+/**
+ * @file
+ * Primary hook implementations for Metatag: hreflang.
+ */
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function metatag_hreflang_ctools_plugin_api($owner, $api) {
+  if ($owner == 'metatag' && $api == 'metatag') {
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function metatag_hreflang_theme() {
+  $info['metatag_hreflang'] = array(
+    'render element' => 'element',
+  );
+
+  return $info;
+}
+
+/**
+ * Theme callback for a hreflang meta tag.
+ * <link rel="alternate" href="usa" hreflang="en-us" />
+ * <link rel="alternate" href="greece" hreflang="el-gr" />
+ * <link rel="alternate" href="italy" hreflang="it-it" />
+ * <link rel="alternate" href="germany" hreflang="de-de" />
+ * <link rel="alternate" href="uk" hreflang="en-gb" />
+ * <link rel="alternate" href="mexico" hreflang="es-mx" />
+ *
+ */
+function theme_metatag_hreflang($variables) {
+  
+  $element = &$variables['element'];
+  //dsm($element);
+  
+  $hreflang ='';
+  
+  if(strstr($element['#id'], 'mexico')){
+    $hreflang = 'es-mx';
+  }
+  if(strstr($element['#id'], 'italy')){
+    $hreflang = 'it-it';
+  }
+  if(strstr($element['#id'], 'greece')){
+    $hreflang = 'el-gr';
+  }
+  if(strstr($element['#id'], 'usa')){
+    $hreflang = 'en-us';
+  }
+  if(strstr($element['#id'], 'uk')){
+    $hreflang = 'en-gb';
+  }
+  if(strstr($element['#id'], 'germany')){
+    $hreflang = 'de-de';
+  }
+  if(strstr($element['#id'], 'mexico')){
+    $hreflang = 'es-mx';
+  }
+  return '<link rel="alternate" hreflang="' . $hreflang . '" href="' . $element['#value'] . '" />' . PHP_EOL;
+  
+}
